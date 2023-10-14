@@ -1,15 +1,22 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
-require("dotenv").config();
-const { connectMongoDB } = require("./connection");
+const connectDB = require("./db/connect");
 const port = process.env.PORT || 5000;
+
+// Routes
+const toolsRoutes = require("./routes/tools.routes");
 
 // Middleware
 app.use(cors());
+app.use(express.json());
 
 // Database Connect
-connectMongoDB(process.env.MONGO_URI);
+connectDB(process.env.MONGO_URI);
+
+// Bypassed Api's
+app.use("/tools", toolsRoutes);
 
 app.get("/", (req, res) => {
   res.send("Ai SpotLights Is Running");
