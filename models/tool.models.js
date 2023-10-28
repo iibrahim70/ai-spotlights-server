@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const toolSchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
     required: true,
   },
-  price: {
-    type: Number,
+  subtitle: {
+    type: String,
     required: true,
   },
   description: {
@@ -17,15 +17,15 @@ const toolSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
+  tags: {
+    type: [String],
+    required: true,
+  },
+  toolsImage: {
     type: String,
     required: true,
   },
-  url: {
-    type: String,
-    required: true,
-  },
-  rating: {
+  ratings: {
     type: Number,
     default: 4.9,
   },
