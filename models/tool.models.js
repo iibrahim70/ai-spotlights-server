@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 
 const toolSchema = new mongoose.Schema({
+  userName: {
+    type: String,
+    required: true,
+  },
+  userEmail: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -28,6 +36,10 @@ const toolSchema = new mongoose.Schema({
   ratings: {
     type: Number,
     default: 4.9,
+  },
+  status: {
+    type: String,
+    default: "pending",
   },
   createdAt: {
     type: Date,
