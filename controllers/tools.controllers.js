@@ -5,6 +5,17 @@ const getAllTools = async (req, res) => {
   if (req.query?.createdAt) {
     query.createdAt = new Date(req.query.createdAt);
   }
+  const result = await Tools.find().sort({
+    createdAt: -1,
+  });
+  res.send(result);
+};
+
+const getApproveTools = async (req, res) => {
+  let query = {};
+  if (req.query?.createdAt) {
+    query.createdAt = new Date(req.query.createdAt);
+  }
   const result = await Tools.find({ status: "approve" }).sort({
     createdAt: -1,
   });
@@ -28,10 +39,40 @@ const createTools = async (req, res) => {
   res.send(result);
 };
 
+const approveTools = async (req, res) => {
+  const id = req.params.id;
+  const updateDoc = {
+    $set: {
+      status: "approved",
+    },
+  };
+  const result = await Tools.findByIdAndUpdate(id, updateDoc);
+  res.send(result);
+};
+
+const denyTools = async (req, res) => {
+  const id = req.params.id;
+  const updateDoc = {
+    $set: {
+      status: "denied",
+    },
+  };
+  const result = await Tools.findByIdAndUpdate(id, updateDoc);
+  res.send(result);
+};
+
 const deleteTools = async (req, res) => {
   const id = req.params.id;
   const result = await Tools.findByIdAndDelete(id);
   res.send(result);
 };
 
-module.exports = { getAllTools, createTools, getMyTools, deleteTools };
+module.exports = {
+  getAllTools,
+  getApproveTools,
+  getMyTools,
+  createTools,
+  approveTools,
+  denyTools,
+  deleteTools,
+};

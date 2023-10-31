@@ -44,6 +44,10 @@ const toolSchema = new mongoose.Schema(
       type: String,
       default: "pending",
     },
+    verified: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
