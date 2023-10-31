@@ -1,7 +1,13 @@
 const Tools = require("../models/tool.models");
 
 const getAllTools = async (req, res) => {
-  const result = await Tools.find({ status: "approve" });
+  let query = {};
+  if (req.query?.createdAt) {
+    query.createdAt = new Date(req.query.createdAt);
+  }
+  const result = await Tools.find({ status: "approve" }).sort({
+    createdAt: -1,
+  });
   res.send(result);
 };
 
@@ -10,7 +16,10 @@ const getMyTools = async (req, res) => {
   if (req.query?.email) {
     query = { userEmail: req.query.email };
   }
-  const result = await Tools.find(query);
+  if (req.query?.createdAt) {
+    query.createdAt = new Date(req.query.createdAt);
+  }
+  const result = await Tools.find(query).sort({ createdAt: -1 });
   res.send(result);
 };
 

@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const toolsRouter = express.Router();
 const {
   getAllTools,
   getMyTools,
@@ -7,9 +7,9 @@ const {
   deleteTools,
 } = require("../controllers/tools.controllers");
 
-router.get("/", getAllTools);
-router.get("/my-tools", getMyTools);
-router.post("/", createTools);
-router.delete("/my-tools/:id", deleteTools);
+toolsRouter.get("/", getAllTools);
+toolsRouter.get("/my-tools", getMyTools);
+toolsRouter.post("/", createTools);
+toolsRouter.delete("/my-tools/:id", deleteTools);
 
-module.exports = router;
+module.exports = toolsRouter;
