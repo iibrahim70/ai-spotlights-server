@@ -1,17 +1,41 @@
 const userModels = require("../models/user.models");
 
 const getAllUsers = async (req, res) => {
-  const result = await userModels.find();
+  const result = await userModels.find().sort({ createdAt: -1 });
   res.send(result);
 };
 
 const creatUsers = async (req, res) => {
   const newUser = req.body;
-  const query = { email: newUser.email };
+  const query = { userEmail: newUser.userEmail };
   const existingUser = await userModels.findOne(query);
-  if (existingUser) return res.send({ message: "User already exists" });
+  if (existingUser) {
+    return res.send({ message: "User already exists" });
+  }
   const result = await userModels.create(newUser);
   res.send(result);
 };
 
-module.exports = { creatUsers, getAllUsers };
+const makeAdmin = async (req, res) => {
+  const id = req.params.id;
+  const updateDoc = {
+    $set: {
+      role: "admin",
+    },
+  };
+  const result = await userModels.findByIdAndUpdate(id, updateDoc);
+  res.send(result);
+};
+
+const makeUser = async (req, res) => {
+  const id = req.params.id;
+  const updateDoc = {
+    $set: {
+      role: "user",
+    },
+  };
+  const result = await userModels.findByIdAndUpdate(id, updateDoc);
+  res.send(result);
+};
+
+module.exports = { creatUsers, getAllUsers, makeAdmin, makeUser };

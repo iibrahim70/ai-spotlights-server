@@ -1,13 +1,7 @@
 const toolModels = require("../models/tool.models");
 
 const getAllTools = async (req, res) => {
-  let query = {};
-  if (req.query?.createdAt) {
-    query.createdAt = new Date(req.query.createdAt);
-  }
-  const result = await toolModels.find().sort({
-    createdAt: -1,
-  });
+  const result = await toolModels.find().sort({ createdAt: -1 });
   res.send(result);
 };
 
@@ -23,9 +17,6 @@ const getMyTools = async (req, res) => {
   let query = {};
   if (req.query?.email) {
     query = { userEmail: req.query.email };
-  }
-  if (req.query?.createdAt) {
-    query.createdAt = new Date(req.query.createdAt);
   }
   const result = await toolModels.find(query).sort({ createdAt: -1 });
   res.send(result);
