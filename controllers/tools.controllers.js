@@ -12,12 +12,9 @@ const getAllTools = async (req, res) => {
 };
 
 const getApproveTools = async (req, res) => {
-  let query = {};
-  if (req.query?.createdAt) {
-    query.createdAt = new Date(req.query.createdAt);
-  }
-  const result = await Tools.find({ status: "approve" }).sort({
-    createdAt: -1,
+  const result = await Tools.find({ status: "approved" }).sort({
+    updatedAt: -1,
+    status: -1,
   });
   res.send(result);
 };
@@ -31,6 +28,12 @@ const getMyTools = async (req, res) => {
     query.createdAt = new Date(req.query.createdAt);
   }
   const result = await Tools.find(query).sort({ createdAt: -1 });
+  res.send(result);
+};
+
+const getSingleTools = async (req, res) => {
+  const id = req.params.id;
+  const result = await Tools.findById(id);
   res.send(result);
 };
 
@@ -93,6 +96,7 @@ module.exports = {
   getAllTools,
   getApproveTools,
   getMyTools,
+  getSingleTools,
   createTools,
   approveTools,
   denyTools,

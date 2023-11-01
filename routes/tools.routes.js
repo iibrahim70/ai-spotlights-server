@@ -4,6 +4,7 @@ const {
   getAllTools,
   getApproveTools,
   getMyTools,
+  getSingleTools,
   createTools,
   approveTools,
   denyTools,
@@ -13,8 +14,9 @@ const {
 } = require("../controllers/tools.controllers");
 
 toolsRouter.get("/", getAllTools);
-toolsRouter.get("/approve-tools", getApproveTools);
+toolsRouter.get("/approved-tools", getApproveTools);
 toolsRouter.get("/my-tools", getMyTools);
+toolsRouter.get("/:id", getSingleTools);
 toolsRouter.post("/", createTools);
 toolsRouter.patch("/approve-tools/:id", approveTools);
 toolsRouter.patch("/deny-tools/:id", denyTools);
