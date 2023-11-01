@@ -1,18 +1,18 @@
-const Tools = require("../models/tool.models");
+const toolModels = require("../models/tool.models");
 
 const getAllTools = async (req, res) => {
   let query = {};
   if (req.query?.createdAt) {
     query.createdAt = new Date(req.query.createdAt);
   }
-  const result = await Tools.find().sort({
+  const result = await toolModels.find().sort({
     createdAt: -1,
   });
   res.send(result);
 };
 
 const getApproveTools = async (req, res) => {
-  const result = await Tools.find({ status: "approved" }).sort({
+  const result = await toolModels.find({ status: "approved" }).sort({
     updatedAt: -1,
     status: -1,
   });
@@ -27,18 +27,18 @@ const getMyTools = async (req, res) => {
   if (req.query?.createdAt) {
     query.createdAt = new Date(req.query.createdAt);
   }
-  const result = await Tools.find(query).sort({ createdAt: -1 });
+  const result = await toolModels.find(query).sort({ createdAt: -1 });
   res.send(result);
 };
 
 const getSingleTools = async (req, res) => {
   const id = req.params.id;
-  const result = await Tools.findById(id);
+  const result = await toolModels.findById(id);
   res.send(result);
 };
 
 const createTools = async (req, res) => {
-  const result = await Tools.create(req.body);
+  const result = await toolModels.create(req.body);
   res.send(result);
 };
 
@@ -49,7 +49,7 @@ const approveTools = async (req, res) => {
       status: "approved",
     },
   };
-  const result = await Tools.findByIdAndUpdate(id, updateDoc);
+  const result = await toolModels.findByIdAndUpdate(id, updateDoc);
   res.send(result);
 };
 
@@ -60,7 +60,7 @@ const denyTools = async (req, res) => {
       status: "denied",
     },
   };
-  const result = await Tools.findByIdAndUpdate(id, updateDoc);
+  const result = await toolModels.findByIdAndUpdate(id, updateDoc);
   res.send(result);
 };
 
@@ -71,7 +71,7 @@ const verifyTools = async (req, res) => {
       verified: "true",
     },
   };
-  const result = await Tools.findByIdAndUpdate(id, updateDoc);
+  const result = await toolModels.findByIdAndUpdate(id, updateDoc);
   res.send(result);
 };
 
@@ -82,13 +82,13 @@ const unverifyTools = async (req, res) => {
       verified: "false",
     },
   };
-  const result = await Tools.findByIdAndUpdate(id, updateDoc);
+  const result = await toolModels.findByIdAndUpdate(id, updateDoc);
   res.send(result);
 };
 
 const deleteTools = async (req, res) => {
   const id = req.params.id;
-  const result = await Tools.findByIdAndDelete(id);
+  const result = await toolModels.findByIdAndDelete(id);
   res.send(result);
 };
 
