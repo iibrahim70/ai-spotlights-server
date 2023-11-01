@@ -6,7 +6,8 @@ const connectDB = require("./db/connect");
 const port = process.env.PORT || 5000;
 
 // Routes
-const toolsRoutes = require("./routes/tools.routes");
+const toolsRouter = require("./routes/tools.routes");
+const usersRouter = require("./routes/users.route");
 
 // Middleware
 app.use(cors());
@@ -16,7 +17,8 @@ app.use(express.json());
 connectDB(process.env.MONGO_URI);
 
 // Bypassed Api's
-app.use("/tools", toolsRoutes);
+app.use("/tools", toolsRouter);
+app.use("/users", usersRouter);
 
 app.get("/", (req, res) => {
   res.send("Ai SpotLights Is Running");

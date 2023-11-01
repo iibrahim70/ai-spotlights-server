@@ -1,5 +1,10 @@
 const userModels = require("../models/user.models");
 
+const getAllUsers = async (req, res) => {
+  const result = await userModels.find();
+  res.send(result);
+};
+
 const creatUsers = async (req, res) => {
   const newUser = req.body;
   const query = { email: newUser.email };
@@ -9,4 +14,4 @@ const creatUsers = async (req, res) => {
   res.send(result);
 };
 
-module.exports = creatUsers;
+module.exports = { creatUsers, getAllUsers };
