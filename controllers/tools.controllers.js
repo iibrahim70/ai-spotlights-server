@@ -61,6 +61,28 @@ const denyTools = async (req, res) => {
   res.send(result);
 };
 
+const verifyTools = async (req, res) => {
+  const id = req.params.id;
+  const updateDoc = {
+    $set: {
+      verified: "true",
+    },
+  };
+  const result = await Tools.findByIdAndUpdate(id, updateDoc);
+  res.send(result);
+};
+
+const unverifyTools = async (req, res) => {
+  const id = req.params.id;
+  const updateDoc = {
+    $set: {
+      verified: "false",
+    },
+  };
+  const result = await Tools.findByIdAndUpdate(id, updateDoc);
+  res.send(result);
+};
+
 const deleteTools = async (req, res) => {
   const id = req.params.id;
   const result = await Tools.findByIdAndDelete(id);
@@ -74,5 +96,7 @@ module.exports = {
   createTools,
   approveTools,
   denyTools,
+  verifyTools,
+  unverifyTools,
   deleteTools,
 };
