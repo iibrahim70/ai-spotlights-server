@@ -12,17 +12,20 @@ const {
   unverifyTools,
   deleteTools,
 } = require("../controllers/tools.controllers");
-const { verifyJWT } = require("../middlewares/auth.middleware");
+const { verifyJWT, verifyAdmin } = require("../middlewares/auth.middleware");
 
-toolsRouter.get("/", verifyJWT, getAllTools);
+// admin routes
+toolsRouter.get("/", verifyJWT, verifyAdmin, getAllTools);
+toolsRouter.patch("/approve-tools/:id", verifyJWT, verifyAdmin, approveTools);
+toolsRouter.patch("/deny-tools/:id", verifyJWT, verifyAdmin, denyTools);
+toolsRouter.patch("/verify-tools/:id", verifyJWT, verifyAdmin, verifyTools);
+toolsRouter.patch("/unverify-tools/:id", verifyJWT, verifyAdmin, unverifyTools);
+
+// user routes
 toolsRouter.get("/approved-tools", getApproveTools);
 toolsRouter.get("/my-tools", verifyJWT, getMyTools);
 toolsRouter.get("/:id", getSingleTools);
 toolsRouter.post("/", verifyJWT, createTools);
-toolsRouter.patch("/approve-tools/:id", verifyJWT, approveTools);
-toolsRouter.patch("/deny-tools/:id", verifyJWT, denyTools);
-toolsRouter.patch("/verify-tools/:id", verifyJWT, verifyTools);
-toolsRouter.patch("/unverify-tools/:id", verifyJWT, unverifyTools);
 toolsRouter.delete("/my-tools/:id", verifyJWT, deleteTools);
 
 module.exports = toolsRouter;
