@@ -12,16 +12,17 @@ const {
   unverifyTools,
   deleteTools,
 } = require("../controllers/tools.controllers");
+const { verifyJWT } = require("../middlewares/auth.middleware");
 
-toolsRouter.get("/", getAllTools);
+toolsRouter.get("/", verifyJWT, getAllTools);
 toolsRouter.get("/approved-tools", getApproveTools);
-toolsRouter.get("/my-tools", getMyTools);
+toolsRouter.get("/my-tools", verifyJWT, getMyTools);
 toolsRouter.get("/:id", getSingleTools);
-toolsRouter.post("/", createTools);
-toolsRouter.patch("/approve-tools/:id", approveTools);
-toolsRouter.patch("/deny-tools/:id", denyTools);
-toolsRouter.patch("/verify-tools/:id", verifyTools);
-toolsRouter.patch("/unverify-tools/:id", unverifyTools);
-toolsRouter.delete("/my-tools/:id", deleteTools);
+toolsRouter.post("/", verifyJWT, createTools);
+toolsRouter.patch("/approve-tools/:id", verifyJWT, approveTools);
+toolsRouter.patch("/deny-tools/:id", verifyJWT, denyTools);
+toolsRouter.patch("/verify-tools/:id", verifyJWT, verifyTools);
+toolsRouter.patch("/unverify-tools/:id", verifyJWT, unverifyTools);
+toolsRouter.delete("/my-tools/:id", verifyJWT, deleteTools);
 
 module.exports = toolsRouter;
