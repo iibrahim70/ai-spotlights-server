@@ -1,7 +1,12 @@
 const express = require("express");
-const createJWT = require("../controllers/auth.controllers");
-const jwtRouter = express.Router();
+const { createJWT, checkAdmin } = require("../controllers/auth.controllers");
+const { verifyJWT } = require("../middlewares/auth.middleware");
+const authRouter = express.Router();
 
-jwtRouter.post("/", createJWT);
+// admin role check route
+authRouter.get("/admin/:email", verifyJWT, checkAdmin);
 
-module.exports = jwtRouter;
+// jwt token create route
+authRouter.post("/jwt", createJWT);
+
+module.exports = authRouter;
