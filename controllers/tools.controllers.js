@@ -60,7 +60,6 @@ const denyTools = async (req, res) => {
 
 const verifyTools = async (req, res) => {
   const id = req.params.id;
-  const updateDoc = {};
   const result = await toolModels.findByIdAndUpdate(id, {
     $set: {
       verified: "true",
@@ -81,7 +80,19 @@ const unverifyTools = async (req, res) => {
 
 const updateTools = async (req, res) => {
   const id = req.params.id;
-  const updateTools = req.body;
+  const body = req.body;
+  const updateTools = {
+    $set: {
+      title: body.title,
+      subtitle: body.subtitle,
+      tags: body.tags,
+      toolsImage: body.toolsImage,
+      ratings: body.ratings,
+      description: body.description,
+    },
+  };
+  const result = await toolModels.findByIdAndUpdate(id, updateTools);
+  res.send(result);
 };
 
 const deleteTools = async (req, res) => {

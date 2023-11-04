@@ -27,7 +27,7 @@ toolsRouter.get("/approved-tools", getApproveTools);
 toolsRouter.get("/my-tools", verifyJWT, getMyTools);
 toolsRouter.get("/:id", getSingleTools);
 toolsRouter.post("/", verifyJWT, createTools);
-toolsRouter.put("/update-tools/:id", verifyJWT, updateTools);
+toolsRouter.put("/:id", verifyJWT, updateTools);
 toolsRouter.delete("/my-tools/:id", verifyJWT, deleteTools);
 
 module.exports = toolsRouter;
