@@ -18,23 +18,21 @@ const creatUsers = async (req, res) => {
 
 const makeAdmin = async (req, res) => {
   const id = req.params.id;
-  const updateDoc = {
+  const result = await userModels.findByIdAndUpdate(id, {
     $set: {
       role: "admin",
     },
-  };
-  const result = await userModels.findByIdAndUpdate(id, updateDoc);
+  });
   res.send(result);
 };
 
 const makeUser = async (req, res) => {
   const id = req.params.id;
-  const updateDoc = {
+  const result = await userModels.findByIdAndUpdate(id, {
     $set: {
       role: "user",
     },
-  };
-  const result = await userModels.findByIdAndUpdate(id, updateDoc);
+  });
   res.send(result);
 };
 

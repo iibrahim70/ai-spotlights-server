@@ -40,46 +40,48 @@ const createTools = async (req, res) => {
 
 const approveTools = async (req, res) => {
   const id = req.params.id;
-  const updateDoc = {
+  const result = await toolModels.findByIdAndUpdate(id, {
     $set: {
       status: "approved",
     },
-  };
-  const result = await toolModels.findByIdAndUpdate(id, updateDoc);
+  });
   res.send(result);
 };
 
 const denyTools = async (req, res) => {
   const id = req.params.id;
-  const updateDoc = {
+  const result = await toolModels.findByIdAndUpdate(id, {
     $set: {
       status: "denied",
     },
-  };
-  const result = await toolModels.findByIdAndUpdate(id, updateDoc);
+  });
   res.send(result);
 };
 
 const verifyTools = async (req, res) => {
   const id = req.params.id;
-  const updateDoc = {
+  const updateDoc = {};
+  const result = await toolModels.findByIdAndUpdate(id, {
     $set: {
       verified: "true",
     },
-  };
-  const result = await toolModels.findByIdAndUpdate(id, updateDoc);
+  });
   res.send(result);
 };
 
 const unverifyTools = async (req, res) => {
   const id = req.params.id;
-  const updateDoc = {
+  const result = await toolModels.findByIdAndUpdate(id, {
     $set: {
       verified: "false",
     },
-  };
-  const result = await toolModels.findByIdAndUpdate(id, updateDoc);
+  });
   res.send(result);
+};
+
+const updateTools = async (req, res) => {
+  const id = req.params.id;
+  const updateTools = req.body;
 };
 
 const deleteTools = async (req, res) => {
@@ -98,5 +100,6 @@ module.exports = {
   denyTools,
   verifyTools,
   unverifyTools,
+  updateTools,
   deleteTools,
 };
