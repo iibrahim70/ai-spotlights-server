@@ -32,9 +32,29 @@ const toolSchema = new mongoose.Schema(
         required: true,
       },
     ],
+    websiteLink: {
+      type: String,
+      required: true,
+    },
     toolsImage: {
       type: String,
       required: true,
+    },
+    facebookLink: {
+      type: String,
+      required: false,
+    },
+    instagramLink: {
+      type: String,
+      required: false,
+    },
+    twitterLink: {
+      type: String,
+      required: false,
+    },
+    linkedinLink: {
+      type: String,
+      required: false,
     },
     ratings: {
       type: Number,
