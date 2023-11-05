@@ -64,6 +64,10 @@ const toolSchema = new mongoose.Schema(
       type: String,
       default: "pending",
     },
+    featured: {
+      type: Boolean,
+      default: false,
+    },
     verified: {
       type: Boolean,
       default: false,

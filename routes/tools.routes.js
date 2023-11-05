@@ -9,6 +9,8 @@ const {
   denyTools,
   verifyTools,
   unverifyTools,
+  featuredTools,
+  unfeaturedTools,
   updateTools,
   deleteTools,
 } = require("../controllers/tools.controllers");
@@ -22,6 +24,15 @@ toolsRouter.patch("/approve-tools/:id", verifyJWT, verifyAdmin, approveTools);
 toolsRouter.patch("/deny-tools/:id", verifyJWT, verifyAdmin, denyTools);
 toolsRouter.patch("/verify-tools/:id", verifyJWT, verifyAdmin, verifyTools);
 toolsRouter.patch("/unverify-tools/:id", verifyJWT, verifyAdmin, unverifyTools);
+
+// working
+toolsRouter.patch("/feature-tools/:id", verifyJWT, verifyAdmin, featuredTools);
+toolsRouter.patch(
+  "/unfeature-tools/:id",
+  verifyJWT,
+  verifyAdmin,
+  unfeaturedTools
+);
 
 // user routes
 toolsRouter.get("/approved-tools", getApproveTools);

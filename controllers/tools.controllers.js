@@ -78,6 +78,26 @@ const unverifyTools = async (req, res) => {
   res.send(result);
 };
 
+const featuredTools = async (req, res) => {
+  const id = req.params.id;
+  const result = await toolModels.findByIdAndUpdate(id, {
+    $set: {
+      featured: "true",
+    },
+  });
+  res.send(result);
+};
+
+const unfeaturedTools = async (req, res) => {
+  const id = req.params.id;
+  const result = await toolModels.findByIdAndUpdate(id, {
+    $set: {
+      featured: "false",
+    },
+  });
+  res.send(result);
+};
+
 const updateTools = async (req, res) => {
   const id = req.params.id;
   const body = req.body;
@@ -111,6 +131,8 @@ module.exports = {
   denyTools,
   verifyTools,
   unverifyTools,
+  featuredTools,
+  unfeaturedTools,
   updateTools,
   deleteTools,
 };
