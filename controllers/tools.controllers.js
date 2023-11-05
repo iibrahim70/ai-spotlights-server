@@ -6,10 +6,22 @@ const getAllTools = async (req, res) => {
 };
 
 const getApproveTools = async (req, res) => {
-  const result = await toolModels.find({ status: "approved" }).sort({
-    updatedAt: -1,
-    status: -1,
-  });
+  const result = await toolModels
+    .find({ status: "approved", featured: "false" })
+    .sort({
+      updatedAt: -1,
+      status: -1,
+    });
+  res.send(result);
+};
+
+const getFeaturedTools = async (req, res) => {
+  const result = await toolModels
+    .find({ status: "approved", featured: "true" })
+    .sort({
+      updatedAt: -1,
+      status: -1,
+    });
   res.send(result);
 };
 
@@ -124,6 +136,7 @@ const deleteTools = async (req, res) => {
 module.exports = {
   getAllTools,
   getApproveTools,
+  getFeaturedTools,
   getMyTools,
   getSingleTools,
   createTools,
