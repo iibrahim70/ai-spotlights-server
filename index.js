@@ -6,9 +6,10 @@ const connectDB = require("./db/connect");
 const port = process.env.PORT || 5000;
 
 // Routes
-const toolsRouter = require("./routes/tools.routes");
-const usersRouter = require("./routes/users.route");
 const authRouter = require("./routes/auth.routes");
+const usersRouter = require("./routes/users.route");
+const toolsRouter = require("./routes/tools.routes");
+const blogsRouter = require("./routes/blogs.routes");
 
 // Middleware
 app.use(cors());
@@ -18,9 +19,10 @@ app.use(express.json());
 connectDB();
 
 // Bypassed Api's
-app.use("/tools", toolsRouter);
-app.use("/users", usersRouter);
 app.use("/auth", authRouter);
+app.use("/users", usersRouter);
+app.use("/tools", toolsRouter);
+app.use("/blogs", blogsRouter);
 
 app.get("/", (req, res) => {
   res.send("Ai SpotLights Is Running");

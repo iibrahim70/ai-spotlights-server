@@ -1,11 +1,11 @@
 const express = require("express");
+const { verifyJWT, verifyAdmin } = require("../middlewares/auth.middleware");
 const {
   getAllUsers,
   creatUsers,
   makeAdmin,
   makeUser,
 } = require("../controllers/users.controllers");
-const { verifyJWT, verifyAdmin } = require("../middlewares/auth.middleware");
 
 const usersRouter = express.Router();
 

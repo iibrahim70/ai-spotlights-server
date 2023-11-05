@@ -1,4 +1,5 @@
 const express = require("express");
+const { verifyJWT, verifyAdmin } = require("../middlewares/auth.middleware");
 const {
   getAllTools,
   getApproveTools,
@@ -15,7 +16,6 @@ const {
   updateTools,
   deleteTools,
 } = require("../controllers/tools.controllers");
-const { verifyJWT, verifyAdmin } = require("../middlewares/auth.middleware");
 
 const toolsRouter = express.Router();
 
