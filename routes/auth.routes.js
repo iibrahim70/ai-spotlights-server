@@ -1,6 +1,7 @@
 const express = require("express");
 const { createJWT, checkAdmin } = require("../controllers/auth.controllers");
 const { verifyJWT } = require("../middlewares/auth.middleware");
+
 const authRouter = express.Router();
 
 // admin role check route

@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 // Database Connect
-connectDB(process.env.MONGO_URI);
+connectDB();
 
 // Bypassed Api's
 app.use("/tools", toolsRouter);

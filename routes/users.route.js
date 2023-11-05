@@ -1,5 +1,4 @@
 const express = require("express");
-const usersRouter = express.Router();
 const {
   getAllUsers,
   creatUsers,
@@ -7,6 +6,8 @@ const {
   makeUser,
 } = require("../controllers/users.controllers");
 const { verifyJWT, verifyAdmin } = require("../middlewares/auth.middleware");
+
+const usersRouter = express.Router();
 
 // admin routes
 usersRouter.get("/", verifyJWT, verifyAdmin, getAllUsers);

@@ -5,6 +5,11 @@
   "scripts": {
     "start": "node index.js"
   },
+  "keywords": [
+    "javascript",
+    "backend"
+  ],
+  "author": "Ibrahim Khalil",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
