@@ -17,7 +17,22 @@ const getSingleBlogs = async (req, res) => {
   res.send(result);
 };
 
-const updateBlogs = async (req, res) => {};
+const updateBlogs = async (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  const updateBlogs = {
+    $set: {
+      title: body.title,
+      subtitle: body.subtitle,
+      tags: body.tags,
+      toolsImage: body.toolsImage,
+      ratings: body.ratings,
+      description: body.description,
+    },
+  };
+  const result = await blogModels.findByIdAndUpdate(id, updateBlogs);
+  res.send(result);
+};
 
 const deleteBlogs = async (req, res) => {
   const id = req.params.id;
