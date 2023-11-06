@@ -10,4 +10,10 @@ const getAllBlogs = async (req, res) => {
   res.send(result);
 };
 
-module.exports = { createBlogs, getAllBlogs };
+const getSingleBlogs = async (req, res) => {
+  const id = req.params.id;
+  const result = await blogModels.findById(id);
+  res.send(result);
+};
+
+module.exports = { createBlogs, getAllBlogs, getSingleBlogs };
