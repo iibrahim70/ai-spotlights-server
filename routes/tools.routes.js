@@ -37,7 +37,7 @@ toolsRouter.patch(
 toolsRouter.get("/featured-tools", getFeaturedTools);
 toolsRouter.get("/approved-tools", getApproveTools);
 toolsRouter.get("/my-tools", verifyJWT, getMyTools);
-toolsRouter.get("/:id", getSingleTools);
+toolsRouter.get("/:title", getSingleTools);
 toolsRouter.post("/", verifyJWT, createTools);
 toolsRouter.put("/:id", verifyJWT, updateTools);
 toolsRouter.delete("/my-tools/:id", verifyJWT, deleteTools);

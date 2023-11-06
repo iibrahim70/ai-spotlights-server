@@ -12,6 +12,7 @@ const toolSchema = new mongoose.Schema(
     },
     title: {
       type: String,
+      lowercase: true,
       required: true,
     },
     subtitle: {

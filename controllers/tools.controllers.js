@@ -40,8 +40,9 @@ const getMyTools = async (req, res) => {
 };
 
 const getSingleTools = async (req, res) => {
-  const id = req.params.id;
-  const result = await toolModels.findById(id);
+  const title = req.params.title;
+  const formattedTitle = title.replace(/-/g, " ");
+  const result = await toolModels.findOne({ title: formattedTitle });
   res.send(result);
 };
 
