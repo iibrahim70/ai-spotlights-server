@@ -18,6 +18,6 @@ blogsRouter.delete("/:id", verifyJWT, verifyAdmin, deleteBlogs);
 
 // user routes
 blogsRouter.get("/", getAllBlogs);
-blogsRouter.get("/:id", getSingleBlogs);
+blogsRouter.get("/:title", getSingleBlogs);
 
 module.exports = blogsRouter;

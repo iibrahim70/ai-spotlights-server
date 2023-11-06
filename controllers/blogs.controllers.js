@@ -11,8 +11,9 @@ const getAllBlogs = async (req, res) => {
 };
 
 const getSingleBlogs = async (req, res) => {
-  const id = req.params.id;
-  const result = await blogModels.findById(id);
+  const title = req.params.title;
+  const formattedTitle = title.replace(/-/g, " ");
+  const result = await blogModels.findOne({ title: formattedTitle });
   res.send(result);
 };
 

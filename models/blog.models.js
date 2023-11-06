@@ -4,6 +4,7 @@ const blogSchema = new mongoose.Schema(
   {
     title: {
       type: String,
+      lowercase: true,
       required: true,
     },
     subtitle: {
