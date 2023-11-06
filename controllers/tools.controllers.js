@@ -31,9 +31,9 @@ const getMyTools = async (req, res) => {
     query = { userEmail: req.query.email };
   }
 
-  // const decodedEmail = req.decoded.email;
-  // if (query.userEmail !== decodedEmail)
-  //   return res.status(403).send({ error: true, message: "Forbidden Access" });
+  const decodedEmail = req.decoded.email;
+  if (query.userEmail !== decodedEmail)
+    return res.status(403).send({ error: true, message: "Forbidden Access" });
 
   const result = await toolModels.find(query).sort({ createdAt: -1 });
   res.send(result);

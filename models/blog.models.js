@@ -37,7 +37,11 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    instagramLink: {
+    youtubeLink: {
+      type: String,
+      required: false,
+    },
+    discordLink: {
       type: String,
       required: false,
     },
@@ -46,6 +50,10 @@ const blogSchema = new mongoose.Schema(
       required: false,
     },
     linkedinLink: {
+      type: String,
+      required: false,
+    },
+    videoReviewLink: {
       type: String,
       required: false,
     },
