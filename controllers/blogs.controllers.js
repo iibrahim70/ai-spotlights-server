@@ -16,4 +16,18 @@ const getSingleBlogs = async (req, res) => {
   res.send(result);
 };
 
-module.exports = { createBlogs, getAllBlogs, getSingleBlogs };
+const updateBlogs = async (req, res) => {};
+
+const deleteBlogs = async (req, res) => {
+  const id = req.params.id;
+  const result = await blogModels.findByIdAndDelete(id);
+  res.send(result);
+};
+
+module.exports = {
+  createBlogs,
+  getAllBlogs,
+  getSingleBlogs,
+  updateBlogs,
+  deleteBlogs,
+};
