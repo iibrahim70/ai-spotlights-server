@@ -122,6 +122,13 @@ const updateTools = async (req, res) => {
       toolsImage: body.toolsImage,
       ratings: body.ratings,
       description: body.description,
+      websiteLink: body.websiteLink,
+      youtubeLink: body.youtubeLink,
+      facebookLink: body.facebookLink,
+      discordLink: body.discordLink,
+      twitterLink: body.twitterLink,
+      linkedinLink: body.twitterLink,
+      videoReviewLink: body.videoReviewLink,
     },
   };
   const result = await toolModels.findByIdAndUpdate(id, updateTools);
