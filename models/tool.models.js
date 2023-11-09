@@ -25,6 +25,7 @@ const toolSchema = new mongoose.Schema(
     },
     category: {
       type: String,
+      lowercase: true,
       required: true,
     },
     tags: [

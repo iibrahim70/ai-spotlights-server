@@ -5,9 +5,9 @@ const getAllTools = async (req, res) => {
   res.send(result);
 };
 
-const getApproveTools = async (req, res) => {
+const getFeaturedTools = async (req, res) => {
   const result = await toolModels
-    .find({ status: "approved", featured: "false" })
+    .find({ status: "approved", featured: "true" })
     .sort({
       updatedAt: -1,
       status: -1,
@@ -15,9 +15,9 @@ const getApproveTools = async (req, res) => {
   res.send(result);
 };
 
-const getFeaturedTools = async (req, res) => {
+const getApproveTools = async (req, res) => {
   const result = await toolModels
-    .find({ status: "approved", featured: "true" })
+    .find({ status: "approved", featured: "false" })
     .sort({
       updatedAt: -1,
       status: -1,
@@ -121,6 +121,7 @@ const updateTools = async (req, res) => {
       tags: body.tags,
       toolsImage: body.toolsImage,
       ratings: body.ratings,
+      category: body.category,
       description: body.description,
       websiteLink: body.websiteLink,
       youtubeLink: body.youtubeLink,

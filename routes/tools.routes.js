@@ -2,8 +2,8 @@ const express = require("express");
 const { verifyJWT, verifyAdmin } = require("../middlewares/auth.middleware");
 const {
   getAllTools,
-  getApproveTools,
   getFeaturedTools,
+  getApproveTools,
   getMyTools,
   getSingleTools,
   createTools,
